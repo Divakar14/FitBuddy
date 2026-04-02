@@ -1,0 +1,73 @@
+package com.fitness.activityservice.service;
+
+import com.fitness.activityservice.dto.ActivityRequest;
+import com.fitness.activityservice.dto.ActivityResponse;
+import com.fitness.activityservice.model.Activity;
+import com.fitness.activityservice.repository.ActivityRepository;
+import org.jspecify.annotations.Nullable;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class ActivityService {
+
+    private final ActivityRepository activityRepository;
+
+    public ActivityService(ActivityRepository activityRepository) {
+        this.activityRepository = activityRepository;
+    }
+
+    public ActivityResponse trackActivity(ActivityRequest activityRequest) {
+
+        Activity activity = new Activity();
+        
+        activity.setUserId(activityRequest.getUserId());
+        activity.setType(activityRequest.getType());
+        activity.setDuration(activityRequest.getDuration());
+        activity.setCaloriesBurned(activityRequest.getCaloriesBurned());
+        activity.setStartTime(activityRequest.getStartTime());
+        activity.setAdditionalMetrics(activityRequest.getAdditionalMetrics());
+
+        Activity savedActivity = activityRepository.save(activity);
+
+        return getActivityResponse(savedActivity);
+
+    }
+
+    private ActivityResponse getActivityResponse(Activity savedActivity) {
+
+        ActivityResponse activityResponse = new ActivityResponse();
+
+        activityResponse.setId(savedActivity.getId());
+        activityResponse.setUserId(savedActivity.getUserId());
+        activityResponse.setType(savedActivity.getType());
+        activityResponse.setDuration(savedActivity.getDuration());
+        activityResponse.setCaloriesBurned(savedActivity.getCaloriesBurned());
+        activityResponse.setStartTime(savedActivity.getStartTime());
+        activityResponse.setAdditionalMetrics(savedActivity.getAdditionalMetrics());
+        activityResponse.setCreatedAt(savedActivity.getCreatedAt());
+        activityResponse.setUpdatedAt(savedActivity.getUpdatedAt());
+        return activityResponse;
+
+    }
+
+    public List<ActivityResponse> getUserActivities(String userId) {
+
+        List<Activity> activities = activityRepository.findByUserId(userId);
+
+        return activities.stream()
+                .map(this::getActivityResponse)
+                .collect(Collectors.toList());
+
+    }
+
+    public ActivityResponse getActivityById(String activityId) {
+
+        return activityRepository.findById(activityId)
+                .map(this::getActivityResponse)
+                .orElseThrow(() -> new RuntimeException("Activity is not found for this ID"));
+
+    }
+}
