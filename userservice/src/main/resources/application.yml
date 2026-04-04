@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: userservice
+    name: user-service
 
   datasource:
     url: jdbc:mysql://localhost:3306/fitness_user_db
@@ -13,3 +13,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
