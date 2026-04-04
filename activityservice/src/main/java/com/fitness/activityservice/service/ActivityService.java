@@ -5,6 +5,8 @@ import com.fitness.activityservice.dto.ActivityResponse;
 import com.fitness.activityservice.model.Activity;
 import com.fitness.activityservice.repository.ActivityRepository;
 import org.jspecify.annotations.Nullable;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +17,18 @@ public class ActivityService {
 
     private final ActivityRepository activityRepository;
     private final UserValidationService userValidationService;
+    private final RabbitTemplate rabbitTemplate;
 
-    public ActivityService(ActivityRepository activityRepository, UserValidationService userValidationService) {
+    @Value("${rabbitmq.exchange.name}")
+    private String exchange;
+
+    @Value("${rabbitmq.routing.key}")
+    private String routingKey;
+
+    public ActivityService(ActivityRepository activityRepository, UserValidationService userValidationService, RabbitTemplate rabbitTemplate) {
         this.activityRepository = activityRepository;
         this.userValidationService = userValidationService;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public ActivityResponse trackActivity(ActivityRequest activityRequest) {
@@ -37,6 +47,13 @@ public class ActivityService {
         activity.setAdditionalMetrics(activityRequest.getAdditionalMetrics());
 
         Activity savedActivity = activityRepository.save(activity);
+
+        // Publish to RabbitMQ for AI Recommendations
+        try {
+            rabbitTemplate.convertAndSend(exchange, routingKey, savedActivity);
+        } catch (Exception e) {
+             System.out.println("Failed to publish activity to RabbitMQ : " + e);
+        }
 
         return getActivityResponse(savedActivity);
 
