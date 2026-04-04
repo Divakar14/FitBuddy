@@ -26,7 +26,7 @@ public class Recommendation {
     public Recommendation() {
     }
 
-    public Recommendation(String id, String activityId, String userId, String activityType, String recommendation, List<String> improvements, List<String> suggestions, List<String> safety) {
+    public Recommendation(String id, String activityId, String userId, String activityType, String recommendation, List<String> improvements, List<String> suggestions, List<String> safety, LocalDateTime createdAt) {
         this.id = id;
         this.activityId = activityId;
         this.userId = userId;
@@ -35,6 +35,7 @@ public class Recommendation {
         this.improvements = improvements;
         this.suggestions = suggestions;
         this.safety = safety;
+        this.createdAt = createdAt;
     }
 
     public String getId() {
@@ -101,6 +102,14 @@ public class Recommendation {
         this.safety = safety;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
         return "Recommendation{" +
@@ -112,6 +121,7 @@ public class Recommendation {
                 ", improvements=" + improvements +
                 ", suggestions=" + suggestions +
                 ", safety=" + safety +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
