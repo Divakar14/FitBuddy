@@ -3,7 +3,7 @@ spring:
     name: ai-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/fitness_activity
+      uri: mongodb://localhost:27017/test
 
 server:
   port: 8083
