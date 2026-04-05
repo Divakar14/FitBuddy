@@ -14,7 +14,7 @@ public class Recommendation {
     private String id;
     private String activityId;
     private String userId;
-    private String activityType;
+    private ActivityType activityType;
     private String recommendation;
     private List<String> improvements;
     private List<String> suggestions;
@@ -26,7 +26,7 @@ public class Recommendation {
     public Recommendation() {
     }
 
-    public Recommendation(String id, String activityId, String userId, String activityType, String recommendation, List<String> improvements, List<String> suggestions, List<String> safety, LocalDateTime createdAt) {
+    public Recommendation(String id, String activityId, String userId, ActivityType activityType, String recommendation, List<String> improvements, List<String> suggestions, List<String> safety, LocalDateTime createdAt) {
         this.id = id;
         this.activityId = activityId;
         this.userId = userId;
@@ -62,11 +62,11 @@ public class Recommendation {
         this.userId = userId;
     }
 
-    public String getActivityType() {
+    public ActivityType getActivityType() {
         return activityType;
     }
 
-    public void setActivityType(String activityType) {
+    public void setActivityType(ActivityType activityType) {
         this.activityType = activityType;
     }
 
