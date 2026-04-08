@@ -17,6 +17,8 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
+    private String keyCloakId;
+
     @Column(nullable = false)
     private String password;
     private String firstName;
@@ -34,9 +36,10 @@ public class User {
     public User() {
     }
 
-    public User(String id, String email, String password, String firstName, String lastName, UserRole role, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(String id, String email, String keyCloakId, String password, String firstName, String lastName, UserRole role, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.email = email;
+        this.keyCloakId = keyCloakId;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -109,11 +112,20 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
+    public String getKeyCloakId() {
+        return keyCloakId;
+    }
+
+    public void setKeyCloakId(String keyCloakId) {
+        this.keyCloakId = keyCloakId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
+                ", keyCloakId='" + keyCloakId + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -122,5 +134,4 @@ public class User {
                 ", updatedAt=" + updatedAt +
                 '}';
     }
-
 }
