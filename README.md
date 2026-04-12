@@ -76,10 +76,10 @@ FitBuddy is a full-stack fitness tracking platform designed to help users monito
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Frontend (React + Vite)                  │
-│                    - Activity Management                    │
-│                    - User Authentication                    │
-│                    - Recommendation Display                 │
+│              Frontend (React + Vite)                        │
+│              - Activity Management                          │
+│              - User Authentication                          │
+│              - Recommendation Display                       │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
@@ -99,10 +99,10 @@ FitBuddy is a full-stack fitness tracking platform designed to help users monito
     └────┬────┘ └────┬────┘ └────┬────┘
          │           │           │
          ▼           ▼           ▼
-    ┌─────────┐ ┌─────────┐ ┌─────────┐
-    │ MySQL   │ │MongoDB  │ │MongoDB  │
-    │         │ │(Activity)│ │(Recs)  │
-    └─────────┘ └─────────┘ └─────────┘
+    ┌─────────┐ ┌───────── ┐ ┌─────────┐
+    │ MySQL   │ │MongoDB   │ │MongoDB  │
+    │         │ │(Activity)│ │(Recs)   │
+    └─────────┘ └───────── ┘ └─────────┘
          ▲           ▲           ▲
          └───────────┼───────────┘
                      │
