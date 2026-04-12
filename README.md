@@ -76,18 +76,18 @@ FitBuddy is a full-stack fitness tracking platform designed to help users monito
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    Frontend (React + Vite)                   │
-│                    - Activity Management                     │
-│                    - User Authentication                     │
-│                    - Recommendation Display                  │
+│                    Frontend (React + Vite)                  │
+│                    - Activity Management                    │
+│                    - User Authentication                    │
+│                    - Recommendation Display                 │
 └────────────────────┬────────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              API Gateway (Port 8080)                          │
-│              - Keycloak OAuth2 Security                      │
-│              - Request Routing                               │
-│              - Service Discovery Integration                 │
+│              API Gateway (Port 8080)                        │
+│              - Keycloak OAuth2 Security                     │
+│              - Request Routing                              │
+│              - Service Discovery Integration                │
 └────────────────────┬────────────────────────────────────────┘
                      │
           ┌──────────┼──────────┐
@@ -112,16 +112,16 @@ FitBuddy is a full-stack fitness tracking platform designed to help users monito
               └─────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│         Eureka Service Discovery (Port 8761)                 │
+│         Eureka Service Discovery (Port 8761)                │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│      Config Server (Port 8888)                               │
-│      - Centralized Configuration Management                  │
+│      Config Server (Port 8888)                              │
+│      - Centralized Configuration Management                 │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│         Keycloak (Port 8181)                                 │
+│         Keycloak (Port 8181)                                │
 │         - OAuth2 Authentication & Authorization             │
 └─────────────────────────────────────────────────────────────┘
 ```
